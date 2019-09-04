@@ -7,32 +7,116 @@
 
 {% block content %}
 
-<h3>Who are you?</h3>
+    <!-- Load the file search form from the view -->
+    <form action="" method="post" id="attendee_availability_form">
+        <!--Show any errors from a previous form submission-->
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Attendee Name
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {% for person in attendees %}
-            <a class="dropdown-item" href="#">{{ person }}</a>
-      {% endfor %}
-  </div>
+        <!--Django Cross-Site Request Forgery magic-->
+        {{ csrf_input }}
+
+        <!--Show the field forms-->
+        {% for field in form %}
+            <div class="attendee_availability_form_fieldWrapper">
+                {{ field.label }}
+                <br>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                <br><br>
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Check Availability</button>
+    </form>
+
+    {% if show_table %}
+<!--        <h2>TABLE GOES HERE</h2>-->
+<!--        {{ availability_table }}-->
+    <br><br>
+    <table class="table table-bordered ">
+  <thead class="thead-dark">
+    <tr>
+        {% for key, value in availability_table.iteritems() %}
+        <th scope="col"><center>{{ key }}</center></th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        {% for key, value in availability_table.iteritems() %}
+            {% if value == True %}
+                <td class="table-success"><center>
+                    Available
+                    <div class="checkbox">
+  <label><input type="checkbox" value=""></label>
 </div>
+                </center></td>
+            {% else %}
+                <td class="table-danger"><center>Not Available</center></td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+  </tbody>
+</table>
 
-<br><br>
+<!--        Is the table...-->
+<!--        Iterable? {{ availability_table is iterable }}-->
+<!--        Mappable? {{ availability_table is mapping }}-->
+<!--        A String? {{ availability_table is string }}-->
 
-<h3>Who do you want to sign up to talk with?</h3>
+<!--        {% for row in availability_table %}-->
+<!--            <br>-->
+<!--{{ row }}-->
+<!--Is this row mappable?   {{ row is mapping }}-->
+<!--            <br>-->
+<!--        {% endfor %}-->
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Attendee Name
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {% for person in attendees %}
-            <a class="dropdown-item" href="#">{{ person }}</a>
-      {% endfor %}
-  </div>
-</div>
+<!--Let's try the stackoverflow solution <br><br>-->
+<!--        {% for key, value in availability_table.iteritems() %}-->
+<!--      {{ key }}{{value}}-->
+<!--{% endfor %}-->
+
+    {% endif %}
+
+<!--<h4>Who are you?</h4>-->
+
+<!--<div class="dropdown">-->
+<!--  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="who_are_you">-->
+<!--    Attendee Name-->
+<!--  </button>-->
+<!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--      {% for person in attendees %}-->
+<!--            <a class="dropdown-item" href="#" onclick="update_dropdown_text(this, 'who_are_you');">{{ person }}</a>-->
+<!--      {% endfor %}-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<br><br>-->
+
+<!--<h4>Who do you want to meet with?</h4>-->
+
+<!--<div class="dropdown">-->
+<!--  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="who_meet_with">-->
+<!--    Attendee Name-->
+<!--  </button>-->
+<!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--      {% for person in attendees %}-->
+<!--            <a class="dropdown-item" href="#" onclick="update_dropdown_text(this, 'who_meet_with');">{{ person }}</a>-->
+<!--      {% endfor %}-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<br><br>-->
+
+<!--<button type="button" class="btn btn-primary" onclick="show_availability();">Check Availability</button>-->
 
 {% endblock %}
