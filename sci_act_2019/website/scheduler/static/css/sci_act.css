@@ -1,0 +1,52 @@
+body {
+    background-image: url("https://smd-prod.s3.amazonaws.com/science-pink/s3fs-public/styles/background_image_file_size/public/thumbnails/image/Solar%20System%20graphic_0.jpg?itok=Q-96-lCB");
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body, html {
+  height: 100%;
+}
+
+main {
+    margin: 2rem;
+    padding: 1rem;
+    position: relative;
+    color: white;
+}
+
+.background_black {
+    margin: 2rem;
+    margin-top: 100px;
+    background-color: black;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#google_sheet_schedule {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+.navbar {
+    background: black !important;
+    color: red;
+}
+
+body {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Fjalla One', sans-serif !important;
+    text-transform: uppercase;

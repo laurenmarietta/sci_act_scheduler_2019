@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block preamble %}
+    <title>Sign Up - Science Activation Group Meeting 2019</title>
+{% endblock %}
+
+{% block content %}
+
+<h3>Who are you?</h3>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Attendee Name
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for person in attendees %}
+            <a class="dropdown-item" href="#">{{ person }}</a>
+      {% endfor %}
+  </div>
+</div>
+
+<br><br>
+
+<h3>Who do you want to sign up to talk with?</h3>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Attendee Name
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for person in attendees %}
+            <a class="dropdown-item" href="#">{{ person }}</a>
+      {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

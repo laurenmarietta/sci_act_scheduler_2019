@@ -1,0 +1,5 @@
+sci_act_2019/website/scheduler/credentials.json
+sci_act_2019/token.pickle
+*.sqlite3
+**/__pycache__/
+**/*egg-info/
